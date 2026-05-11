@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial;
+}
+
+button {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+li {
+  background: #ecf0f1;
+  margin: 5px;
+  padding: 8px;
+  border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Dynamic List</h2>
+
+<button onclick="addItem()">Add Item</button>
+
+<ul id="list"></ul>
+
+<script>
+let count = 1;
+
+function addItem() {
+  const li = document.createElement("li");
+  li.textContent = "New Item " + count++;
+  document.getElementById("list").appendChild(li);
+}
+</script>
+
+</body>
+</html>

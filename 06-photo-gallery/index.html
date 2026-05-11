@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h2>Photo Gallery</h2>
+
+<div class="gallery">
+  <img src="https://i.pinimg.com/736x/c0/00/44/c00044bcdbc00de59326f2002b1e2a9c.jpg">
+  <img src="https://i.pinimg.com/736x/bd/bd/5c/bdbd5c3a0766f89c6751baa6b27de4b1.jpg">
+  <img src="https://i.pinimg.com/736x/71/e9/77/71e9778d4819977c422a7c0bb464c2a6.jpg">
+  <img src="https://i.pinimg.com/736x/b7/ea/d8/b7ead8670d26ded815c4499c474b67d2.jpg">
+</div>
+
+</body>
+</html>

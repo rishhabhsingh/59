@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Form Validation</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+form {
+  background: white;
+  padding: 70px;
+  width: 320px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 3px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+button {
+  width: 107%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2c80b4;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<form id="myForm" onsubmit="return validateForm()">
+
+<h2>Register</h2>
+
+<!-- Name -->
+<label>Name</label>
+<input type="text" id="name">
+<div class="error" id="nameError"></div>
+
+<!-- Email -->
+<label>Email</label>
+<input type="text" id="email">
+<div class="error" id="emailError"></div>
+
+<!-- Password -->
+<label>Password</label>
+<input type="password" id="password">
+<div class="error" id="passwordError"></div>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<script>
+function validateForm() {
+
+  // Clear previous errors
+  document.getElementById("nameError").innerText = "";
+  document.getElementById("emailError").innerText = "";
+  document.getElementById("passwordError").innerText = "";
+
+  let isValid = true;
+
+  // Get values
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  // ---------------------
+  // NAME VALIDATION
+  // ---------------------
+  if (name === "") {
+    document.getElementById("nameError").innerText = "Name is required";
+    isValid = false;
+  }
+
+  // ---------------------
+  // EMAIL VALIDATION
+  // ---------------------
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (email === "") {
+    document.getElementById("emailError").innerText = "Email is required";
+    isValid = false;
+  } 
+  else if (!emailPattern.test(email)) {
+    document.getElementById("emailError").innerText = "Invalid email format";
+    isValid = false;
+  }
+
+  // ---------------------
+  // PASSWORD VALIDATION
+  // ---------------------
+  if (password === "") {
+    document.getElementById("passwordError").innerText = "Password is required";
+    isValid = false;
+  }
+  else if (password.length < 6) {
+    document.getElementById("passwordError").innerText = "Password must be at least 6 characters";
+    isValid = false;
+  }
+
+  // Prevent form submission if invalid
+  return isValid;
+}
+</script>
+
+</body>
+</html>
