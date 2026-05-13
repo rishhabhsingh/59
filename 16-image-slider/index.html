@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Slider</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f4f4;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .slider-container{
+            position:relative;
+            width:80%;
+            max-width:800px;
+            overflow:hidden;
+            border-radius:12px;
+            box-shadow:0 0 15px rgba(0,0,0,0.2);
+            background:white;
+        }
+
+        .slider{
+            display:flex;
+            transition:transform 0.5s ease-in-out;
+        }
+
+        .slide{
+            min-width:100%;
+        }
+
+        .slide img{
+            width:100%;
+            height:500px;
+            object-fit:cover;
+            display:block;
+        }
+
+        .btn{
+            position:absolute;
+            top:50%;
+            transform:translateY(-50%);
+            background:rgba(0,0,0,0.5);
+            color:white;
+            border:none;
+            padding:15px;
+            cursor:pointer;
+            font-size:22px;
+            border-radius:50%;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:rgba(0,0,0,0.8);
+        }
+
+        #prev{
+            left:15px;
+        }
+
+        #next{
+            right:15px;
+        }
+
+        @media(max-width:768px){
+
+            .slide img{
+                height:300px;
+            }
+
+            .btn{
+                padding:10px;
+                font-size:18px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+
+        <div class="slider" id="slider">
+
+            <div class="slide">
+                <img src="https://picsum.photos/id/1015/800/500" alt="Image 1">
+            </div>
+
+            <div class="slide">
+                <img src="https://picsum.photos/id/1016/800/500" alt="Image 2">
+            </div>
+
+            <div class="slide">
+                <img src="https://picsum.photos/id/1018/800/500" alt="Image 3">
+            </div>
+
+            <div class="slide">
+                <img src="https://picsum.photos/id/1020/800/500" alt="Image 4">
+            </div>
+
+        </div>
+
+        <button class="btn" id="prev">&#10094;</button>
+        <button class="btn" id="next">&#10095;</button>
+
+    </div>
+
+    <script>
+
+        // Selecting Elements
+        const slider = document.getElementById("slider");
+        const slides = document.querySelectorAll(".slide");
+        const nextBtn = document.getElementById("next");
+        const prevBtn = document.getElementById("prev");
+
+        // Current Slide Index
+        let currentIndex = 0;
+
+        // Total Slides
+        const totalSlides = slides.length;
+
+        // Function to Update Slider Position
+        function updateSlider(){
+
+            slider.style.transform =
+            `translateX(-${currentIndex * 100}%)`;
+
+        }
+
+        // Next Slide Function
+        function nextSlide(){
+
+            currentIndex++;
+
+            if(currentIndex >= totalSlides){
+                currentIndex = 0;
+            }
+
+            updateSlider();
+        }
+
+        // Previous Slide Function
+        function prevSlide(){
+
+            currentIndex--;
+
+            if(currentIndex < 0){
+                currentIndex = totalSlides - 1;
+            }
+
+            updateSlider();
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener("click", () => {
+
+            nextSlide();
+
+            resetInterval();
+
+        });
+
+        prevBtn.addEventListener("click", () => {
+
+            prevSlide();
+
+            resetInterval();
+
+        });
+
+        // Automatic Sliding
+        let slideInterval = setInterval(nextSlide, 3000);
+
+        // Reset Interval After Manual Navigation
+        function resetInterval(){
+
+            clearInterval(slideInterval);
+
+            slideInterval = setInterval(nextSlide, 3000);
+        }
+
+        // Console Logs
+        console.log("Image Slider Loaded");
+        console.log("Total Slides:", totalSlides);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Object - Car Information</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Car Information</h1>
+
+        <p><span class="label">Make:</span> <span id="make"></span></p>
+        <p><span class="label">Model:</span> <span id="model"></span></p>
+        <p><span class="label">Year:</span> <span id="year"></span></p>
+    </div>
+
+    <script>
+        // Creating a JavaScript object
+        const car = {
+            make: "Toyota",
+            model: "Camry",
+            year: 2022
+        };
+
+        // Display object properties in the browser
+        document.getElementById("make").textContent = car.make;
+        document.getElementById("model").textContent = car.model;
+        document.getElementById("year").textContent = car.year;
+
+        // Logging the entire object to the console
+        console.log("Car Object:", car);
+
+        // Logging individual properties
+        console.log("Make:", car.make);
+        console.log("Model:", car.model);
+        console.log("Year:", car.year);
+    </script>
+
+</body>
+</html>
